@@ -19,34 +19,13 @@ Brazil tops the all-time goals table across all World Cups. But Germany has the 
 
 ---
 
-## Project structure
-
-fifa-worldcup-analysis/
-│
-├── data/
-│   └── worldcups_matches.csv       # Raw dataset (1930–2014, 852 matches)
-│
-├── notebooks/
-│   └── analysis.ipynb              # Full EDA notebook
-│
-├── charts/
-│   ├── goals_per_game_trend.png    # Goals per game over time (line chart)
-│   └── top_scoring_teams.png       # All-time top scoring teams (bar chart)
-│
-├── presentation/
-│   └── FIFA_Analysis_Report.pptx  # Full slide deck
-│
-├── analyze.py                      # Main analysis script
-└── README.md
-
 ## Tools used
-### | Tool | Purpose |
-
-| Python 3.11 | Data cleaning, processing, analysis |
-| Pandas | Data manipulation and aggregation |
-| Matplotlib / Seaborn | Chart generation |
-| Claude AI (Anthropic) | Pattern recognition, narrative insight generation |
-| PowerPoint (pptxgenjs) | Automated presentation build |
+### | Tool & Purpose |
+1.Python 3.11 for Data cleaning, processing, analysis |
+2.Pandas for Data manipulation and aggregation |
+3.Matplotlib for Chart generation |
+4.Claude AI for Pattern recognition, narrative insight generation |
+5.PowerPoint for presentation build |
 
 ---
 
