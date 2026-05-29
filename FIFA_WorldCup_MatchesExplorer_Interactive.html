@@ -1,0 +1,165 @@
+
+<h2 class="sr-only">World Cup Matches Data Explorer — 852 matches from 1930 to 2014 across 20 tournaments</h2>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.metric { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 14px 16px; }
+.metric .label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; }
+.metric .value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+.metric .sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+.section { margin-bottom: 28px; }
+.section-title { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+.chart-wrap { position: relative; width: 100%; height: 260px; }
+.chart-wrap-lg { position: relative; width: 100%; height: 320px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; font-size: 12px; color: var(--color-text-secondary); }
+.legend span { display: flex; align-items: center; gap: 5px; }
+.legend-sq { width: 10px; height: 10px; border-radius: 2px; }
+.result-bar { display: flex; border-radius: 6px; overflow: hidden; height: 36px; margin-bottom: 10px; }
+.result-seg { display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: white; }
+</style>
+
+<div style="padding: 4px 0 24px;">
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="label">Total matches</div>
+      <div class="value">852</div>
+      <div class="sub">1930 – 2014</div>
+    </div>
+    <div class="metric">
+      <div class="label">Tournaments</div>
+      <div class="value">20</div>
+      <div class="sub">every 4 years</div>
+    </div>
+    <div class="metric">
+      <div class="label">Avg goals/match</div>
+      <div class="value">2.83</div>
+      <div class="sub">peak: 5.38 (1954)</div>
+    </div>
+    <div class="metric">
+      <div class="label">Avg attendance</div>
+      <div class="value">45,165</div>
+      <div class="sub">max: 173,850</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Average goals per match by tournament year</div>
+    <div class="chart-wrap">
+      <canvas id="goalsChart" role="img" aria-label="Bar chart of average goals per match per World Cup year from 1930 to 2014. Peak was 1954 at 5.38 goals per match.">Average goals declined from ~4 per match in early tournaments to about 2.3–2.6 in recent ones.</canvas>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="section">
+      <div class="section-title">Top 10 scoring teams (all-time)</div>
+      <div class="chart-wrap-lg">
+        <canvas id="teamsChart" role="img" aria-label="Horizontal bar chart of top 10 scoring teams. Brazil leads with 225 goals.">Brazil 225, Argentina 133, Germany FR 131, Italy 128, France 108, Germany 104, Spain 92, Netherlands 91, Hungary 87, Uruguay 80.</canvas>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">Match results</div>
+      <div style="margin-bottom: 18px;">
+        <div class="legend">
+          <span><span class="legend-sq" style="background:#378ADD;"></span>Home win 57.3%</span>
+          <span><span class="legend-sq" style="background:#888780;"></span>Draw 22.3%</span>
+          <span><span class="legend-sq" style="background:#D4537E;"></span>Away win 20.4%</span>
+        </div>
+        <div class="result-bar">
+          <div class="result-seg" style="width:57.3%;background:#378ADD;">57.3%</div>
+          <div class="result-seg" style="width:22.3%;background:#888780;">22.3%</div>
+          <div class="result-seg" style="width:20.4%;background:#D4537E;">20.4%</div>
+        </div>
+      </div>
+      <div style="font-size:13px; color:var(--color-text-secondary); line-height:1.6; margin-top:8px;">
+        Home advantage is significant — the home side wins in over half of all matches. Away teams win only 1 in 5.
+      </div>
+      <div style="margin-top: 20px;">
+        <div class="section-title">Record-breaking match</div>
+        <div style="background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:14px 16px; font-size:13px; color:var(--color-text-secondary); line-height:1.7;">
+          <span style="font-weight:500; color:var(--color-text-primary);">Austria 7 – 5 Switzerland</span><br>
+          1954 World Cup · Most goals in a single match (12)<br><br>
+          <span style="font-weight:500; color:var(--color-text-primary);">Uruguay vs Brazil · 1950</span><br>
+          Maracanã · Highest attendance ever: <b>173,850</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Matches played per tournament</div>
+    <div class="chart-wrap">
+      <canvas id="matchesChart" role="img" aria-label="Bar chart showing number of matches per World Cup year. Increased from 18 matches in 1930 to 80 in 2014.">Match counts grew from 18 in 1930 to 80 in 2014 as more teams joined the tournament.</canvas>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const years = [1930,1934,1938,1950,1954,1958,1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014];
+const avgGoals = [3.89,4.12,4.67,4.00,5.38,3.60,2.78,2.78,2.97,2.55,2.68,2.81,2.54,2.21,2.71,2.67,2.52,2.30,2.27,2.58];
+const matches = [18,17,18,22,26,35,32,32,32,38,38,52,52,52,52,64,64,64,64,80];
+
+const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+const textColor = isDark ? '#aaa' : '#888';
+const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.07)';
+
+const defaultOpts = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
+  scales: {
+    x: { ticks: { color: textColor, font: { size: 11 }, autoSkip: false, maxRotation: 45 }, grid: { color: gridColor } },
+    y: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } }
+  }
+};
+
+new Chart(document.getElementById('goalsChart'), {
+  type: 'bar',
+  data: {
+    labels: years.map(String),
+    datasets: [{
+      label: 'Avg goals/match',
+      data: avgGoals,
+      backgroundColor: avgGoals.map(v => v >= 4 ? '#D85A30' : v >= 3 ? '#EF9F27' : '#378ADD'),
+      borderRadius: 3
+    }]
+  },
+  options: { ...defaultOpts, scales: { ...defaultOpts.scales, y: { ...defaultOpts.scales.y, min: 0, max: 6 } } }
+});
+
+const teamLabels = ['Brazil','Argentina','Germany FR','Italy','France','Germany','Spain','Netherlands','Hungary','Uruguay'];
+const teamGoals = [225,133,131,128,108,104,92,91,87,80];
+const teamColors = ['#1D9E75','#D85A30','#D85A30','#D85A30','#378ADD','#D85A30','#D85A30','#7F77DD','#888780','#1D9E75'];
+
+new Chart(document.getElementById('teamsChart'), {
+  type: 'bar',
+  data: {
+    labels: teamLabels,
+    datasets: [{ label: 'Goals', data: teamGoals, backgroundColor: '#378ADD', borderRadius: 3 }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
+      y: { ticks: { color: textColor, font: { size: 11 } }, grid: { display: false } }
+    }
+  }
+});
+
+new Chart(document.getElementById('matchesChart'), {
+  type: 'bar',
+  data: {
+    labels: years.map(String),
+    datasets: [{ label: 'Matches', data: matches, backgroundColor: '#7F77DD', borderRadius: 3 }]
+  },
+  options: { ...defaultOpts }
+});
+</script>
