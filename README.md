@@ -21,11 +21,11 @@ Brazil tops the all-time goals table across all World Cups. But Germany has the 
 
 ## Tools used
 ### Tool & Purpose
-**Python 3.11 for Data cleaning, processing, analysis** 
-**Pandas for Data manipulation and aggregation**
-**Matplotlib for Chart generation**
-**Claude AI for Pattern recognition, narrative insight generation**
-**PowerPoint for presentation build**
+- **Python 3.11 for Data cleaning, processing, analysis** 
+- **Pandas for Data manipulation and aggregation**
+- **Matplotlib for Chart generation**
+- **Claude AI for Pattern recognition, narrative insight generation**
+- **PowerPoint for presentation build**
 
 ---
 
