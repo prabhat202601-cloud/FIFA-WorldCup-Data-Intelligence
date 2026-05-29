@@ -5,7 +5,7 @@
 
 ## Overview
 
-This is an end-to-end data intelligence project built on the FIFA World Cup Matches dataset (1930–2014). The entire workflow — from raw data exploration to statistical hypothesis testing to interactive dashboards to a stakeholder presentation — was executed inside Claude AI using natural language, with zero manual code written.
+This is an end-to-end data intelligence project built on the FIFA World Cup Matches dataset (1930–2014). The entire workflow from raw data exploration to statistical hypothesis testing to interactive dashboards to a stakeholder presentation was executed inside Claude AI using natural language, with zero manual code written.
 
 The project was built to apply skills learned from the Claude AI Masterclass by Dr. Ryan Ahmed, covering agentic workflows, the data analysis plugin, and prompt engineering techniques.
 
