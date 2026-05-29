@@ -106,8 +106,8 @@ The entire project was completed in 5 phases inside Claude AI:
 
 ## About
 
-Built by **Prabhat Puru**
-Data Analyst | Data Science & AI Enthusiast | Open to Work
+Built by **Puru Tiwari**
+Data Analyst | Data Engineer & AI Enthusiast | Open to Work
 
 Connect with me on [LinkedIn](https://www.linkedin.com/in/puru-tiwari-314aab135/)
 
